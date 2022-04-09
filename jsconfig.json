@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "baseUrl": "./",
+    "paths": {
+      "*": ["*", "src/*"],
+      "components": ["components"],
+      "screens": ["screens"],
+      "actions": ["redux/actions"],
+      "assets": ["assets"],
+      "reuseableFunctions": ["reuseableFunctions"]
+    }
+  }
+}
