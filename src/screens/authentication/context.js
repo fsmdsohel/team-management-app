@@ -1,10 +1,10 @@
 import React from "react";
 
-const LoginContext = React.createContext({
+const Authentication = React.createContext({
   finishLogin: () => undefined,
   finishSignUp: () => undefined,
 });
 
-export const useLoginContext = () => React.useContext(LoginContext);
+export const useAuthentication = () => React.useContext(Authentication);
 
-export const LoginContextProvider = LoginContext.Provider;
+export const AuthenticationContextProvider = Authentication.Provider;

@@ -6,12 +6,6 @@ import lottie from "../assets/login-spinner/lf30_editor_rvoddd2d.json";
 import {SafeAreaView} from "react-native-safe-area-context";
 import useThemedStyles from "../theme/useThemedStyles";
 
-import {LogBox} from "react-native";
-
-LogBox.ignoreLogs([
-  "ViewPropTypes will be removed",
-  "ColorPropType will be removed",
-]);
 // import {useSelector} from "react-redux";
 
 const Splash = ({navigation}) => {
@@ -30,7 +24,7 @@ const Splash = ({navigation}) => {
       // } else {
       //   navigation.replace("Login");
       // }
-      navigation.replace("Main");
+      navigation.replace("GetStarted");
     }, 500);
   };
 
