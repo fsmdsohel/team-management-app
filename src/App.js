@@ -4,8 +4,7 @@ import ThemeProvider from "./theme/ThemeProvider";
 import {LogBox} from "react-native";
 
 LogBox.ignoreLogs([
-  "ViewPropTypes will be removed",
-  "ColorPropType will be removed",
+  "[react-native-gesture-handler] Seems like you're using an old API with gesture components, check out new Gestures system!",
   "exported from 'deprecated-react-native-prop-types'.",
 ]);
 
