@@ -2,7 +2,6 @@ const ASBESTOS = "#7f8c8d";
 const MIDNIGHT_BLUE = "#2c3e50";
 const EMERALD = "#2ecc71";
 const ALIZARIN = "#e74c3c";
-const CLOUDS = "#ecf0f1";
 const SILVER = "#bdc3c7";
 
 const common = {
@@ -13,7 +12,7 @@ const common = {
 
 const light = {
   ...common,
-  BACKGROUND: CLOUDS,
+  BACKGROUND: "#fff",
   TEXT: MIDNIGHT_BLUE,
   TEXT_SECONDARY: ASBESTOS,
 };
@@ -21,7 +20,7 @@ const light = {
 const dark = {
   ...common,
   BACKGROUND: MIDNIGHT_BLUE,
-  TEXT: CLOUDS,
+  TEXT: "#fff",
   TEXT_SECONDARY: SILVER,
 };
 

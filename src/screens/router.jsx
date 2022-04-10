@@ -5,12 +5,6 @@ import {createNativeStackNavigator} from "@react-navigation/native-stack";
 import {GetStarted, Splash} from "./index";
 import {Main} from "./main";
 import Authentication from "./authentication";
-import {LogBox} from "react-native";
-
-LogBox.ignoreLogs([
-  "[react-native-gesture-handler] Seems like you're using an old API with gesture components, check out new Gestures system!",
-  "exported from 'deprecated-react-native-prop-types'.",
-]);
 
 const Stack = createNativeStackNavigator();
 
