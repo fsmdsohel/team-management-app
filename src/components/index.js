@@ -1,3 +1,4 @@
-const {default: Button} = require("./button");
+import Button from "./button";
+import InputField from "./inputField";
 
-export {Button};
+export {Button, InputField};

@@ -25,7 +25,7 @@ const Splash = ({navigation}) => {
       //   navigation.replace("Login");
       // }
       navigation.replace("GetStarted");
-    }, 3000);
+    }, 300);
   };
 
   const style = useThemedStyles(styles);

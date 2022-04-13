@@ -1,4 +1,4 @@
-const ASBESTOS = "#7f8c8d";
+const ASBESTOS = "#666666";
 const MIDNIGHT_BLUE = "#2c3e50";
 const EMERALD = "#2ecc71";
 const ALIZARIN = "#e74c3c";

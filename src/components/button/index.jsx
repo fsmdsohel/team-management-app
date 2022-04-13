@@ -23,7 +23,6 @@ const styles = (theme) =>
       borderRadius: 18,
       alignItems: "center",
       marginVertical: 10,
-      marginHorizontal: 16,
     },
     title: {
       fontFamily: "Lato-Regular",

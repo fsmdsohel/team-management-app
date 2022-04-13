@@ -4,6 +4,7 @@ import {
   View,
   Dimensions,
   TouchableOpacity,
+  Alert,
 } from "react-native";
 import React, {useState} from "react";
 import LottieView from "lottie-react-native";
@@ -27,7 +28,11 @@ const Auth = () => {
   const navigation = useNavigation();
 
   const handleSignIn = () => {
-    navigation.navigate("");
+    navigation.navigate("loginEmail");
+  };
+
+  const handleSignInWithGoogle = () => {
+    Alert.alert("Alert", "Sign in with Google feature coming soon!");
   };
 
   const theme = useTheme();
@@ -76,7 +81,9 @@ const Auth = () => {
           </View>
         </>
       )}
-      <Button onPress={handleSignIn} title="Sign in with Google" />
+      <View style={{marginHorizontal: 16}}>
+        <Button onPress={handleSignInWithGoogle} title="Sign in with Google" />
+      </View>
       <TouchableOpacity onPress={handleSignIn} style={style.sign}>
         <Text style={style.signText}>
           Already have an account?{" "}

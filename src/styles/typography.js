@@ -10,4 +10,10 @@ const letterSpacing = {
   L: 10,
 };
 
-export const typography = {size, letterSpacing};
+const fontFamily = {
+  BOLD: "Lato-Bold",
+  REGULAR: "Lato-Regular",
+  LIGHT: "Lato-Light",
+};
+
+export const typography = {size, letterSpacing, fontFamily};
