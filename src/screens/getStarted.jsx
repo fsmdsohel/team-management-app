@@ -42,7 +42,7 @@ const GetStarted = () => {
             <Text style={style.label}>
               Let's Create {"\n"}a Space {"\n"}For Your {"\n"}Workflows.
             </Text>
-            <TouchableOpacity onPress={handleStartBtn}>
+            <TouchableOpacity activeOpacity={0.6} onPress={handleStartBtn}>
               <View style={style.button}>
                 <Text style={style.buttonText}>Get Start</Text>
               </View>
@@ -50,7 +50,7 @@ const GetStarted = () => {
           </View>
           <View style={style.boxWrapper}>
             <View style={{position: "relative", right: -100}}>
-              <TouchableOpacity onPress={handleStartBtn}>
+              <TouchableOpacity activeOpacity={0.6} onPress={handleStartBtn}>
                 <View style={style.box} />
                 <View style={style.arrowRight}>
                   <Icon name="arrow-right" size={30} color="#171a20" />

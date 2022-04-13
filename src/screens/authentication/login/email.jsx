@@ -12,11 +12,15 @@ const Email = () => {
     navigation.navigate("loginPassword");
   };
 
+  const handleCreateAccount = () => {
+    navigation.navigate("signIn");
+  };
+
   const style = useThemedStyles(styles);
   return (
     <View style={style.container}>
       <View style={style.header}>
-        <TouchableOpacity onPress={() => console.log("click")}>
+        <TouchableOpacity onPress={handleCreateAccount}>
           <Text style={style.headerLabel}>Create a Account</Text>
         </TouchableOpacity>
       </View>
@@ -36,6 +40,7 @@ const Email = () => {
             autoCorrect={false}
           />
         </View>
+
         <Button onPress={handleContinue} title="Continue" />
       </KeyboardAvoidingView>
     </View>

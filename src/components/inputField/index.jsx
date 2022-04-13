@@ -54,7 +54,7 @@ const InputField = ({
               <VectorIcon
                 name={showPassword ? "eye-off" : "eye"}
                 size={20}
-                color="#000"
+                color="#808080"
               />
             }
             size={22}
@@ -67,7 +67,7 @@ const InputField = ({
           style={style.clearButton}
           onPress={() => handleChangeText("")}>
           <Icon
-            icon={<VectorIcon name="close" size={20} color="#000" />}
+            icon={<VectorIcon name="close" size={20} color="#808080" />}
             size={14}
           />
         </TouchableOpacity>
@@ -91,7 +91,7 @@ const styles = (theme) =>
       },
       shadowOpacity: 0.15,
       shadowRadius: 0.5,
-      elevation: 1,
+      elevation: 2,
     },
     input: {
       paddingLeft: 16,

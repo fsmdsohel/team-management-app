@@ -1,34 +1,38 @@
 import {StyleSheet, Text, View, KeyboardAvoidingView} from "react-native";
 import React from "react";
 import useThemedStyles from "theme/useThemedStyles";
+import {useNavigation} from "@react-navigation/native";
 import {TouchableOpacity} from "react-native-gesture-handler";
 import {InputField} from "components";
 import {Button} from "components";
-import {useNavigation} from "@react-navigation/native";
 
-const Password = () => {
+const SignIn = () => {
   const navigation = useNavigation();
-  const handleContinue = () => {
-    navigation.navigate("loginPassword");
-  };
-
-  const handleCreateAccount = () => {
-    navigation.navigate("signIn");
-  };
 
   const style = useThemedStyles(styles);
   return (
     <View style={style.container}>
       <View style={style.header}>
-        <TouchableOpacity onPress={handleCreateAccount}>
-          <Text style={style.headerLabel}>Create a Account</Text>
+        <TouchableOpacity onPress={() => {}}>
+          <Text style={style.headerLabel}>Have Account? Log In</Text>
         </TouchableOpacity>
       </View>
       <KeyboardAvoidingView style={style.keyboardAvoider}>
-        <Text style={style.bodyLabel}>Log In</Text>
+        <Text style={style.bodyLabel}>Sign Up</Text>
         <Text style={[style.bodySubLabel, {marginBottom: 30}]}>
-          Useing <Text style={style.email}>example@mova.ie</Text> to log in
+          Sign up to continue.
         </Text>
+        <Text style={[style.bodySubLabel, {marginBottom: 10, fontSize: 12}]}>
+          YOUR EMAIL
+        </Text>
+        <View style={{marginBottom: 20}}>
+          <InputField
+            placeholder="Type here"
+            keyboardType="email-address"
+            autoCapitalize="none"
+            autoCorrect={false}
+          />
+        </View>
         <Text style={[style.bodySubLabel, {marginBottom: 10, fontSize: 12}]}>
           YOUR PASSWORD
         </Text>
@@ -40,13 +44,13 @@ const Password = () => {
             secureTextEntry={true}
           />
         </View>
-        <Button onPress={handleContinue} title="Continue" />
+        <Button onPress={() => {}} title="Continue" />
       </KeyboardAvoidingView>
     </View>
   );
 };
 
-export default Password;
+export default SignIn;
 
 const styles = (theme) =>
   StyleSheet.create({
@@ -79,9 +83,5 @@ const styles = (theme) =>
       fontFamily: theme.typography.fontFamily.REGULAR,
       fontSize: theme.typography.size.S,
       color: theme.colors.TEXT_SECONDARY,
-    },
-    email: {
-      color: theme.colors.TEXT,
-      fontFamily: theme.typography.fontFamily.BOLD,
     },
   });
