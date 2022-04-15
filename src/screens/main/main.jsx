@@ -1,56 +1,177 @@
-import React from "react";
-import {StyleSheet, Text, View, Button, Switch} from "react-native";
-import useTheme from "../../theme/useTheme";
-import useThemedStyles from "../../theme/useThemedStyles";
+import {createBottomTabNavigator} from "@react-navigation/bottom-tabs";
+import React, {useEffect, useRef} from "react";
+import {StyleSheet, TouchableOpacity, View} from "react-native";
+import Icon, {Icons} from "components/Icons";
+import * as Animatable from "react-native-animatable";
+import {Home} from "./index";
 
-const Main = () => {
-  const theme = useTheme();
-  const style = useThemedStyles(styles);
+const Tab = createBottomTabNavigator();
+
+const animate1 = {
+  0: {translateY: 7},
+  1: {translateY: -18},
+};
+const animate2 = {
+  0: {translateY: -18},
+  1: {translateY: 7},
+};
+
+const TabButton = ({item, onPress, accessibilityState}) => {
+  const focused = accessibilityState.selected;
+  const viewRef = useRef(null);
+
+  useEffect(() => {
+    if (focused) {
+      viewRef.current.animate(animate1);
+    } else {
+      viewRef.current.animate(animate2);
+    }
+  }, [focused]);
 
   return (
-    <View style={style.body}>
-      <Text style={style.title}>Home Screen</Text>
-      <Text style={style.text}>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vitae
-        lorem enim. Etiam accumsan nibh eu laoreet sollicitudin. Proin
-        ultricies, metus nec auctor ultricies, dui metus vulputate odio, id
-        hendrerit lectus mauris a ex.
-      </Text>
-      <Text style={style.referralCode}>3XP4N510</Text>
-      <Button onPress={() => {}} title="Accept" color={theme.colors.SUCCESS} />
-      <Button onPress={() => {}} title="Decline" color={theme.colors.ERROR} />
-      <Switch onValueChange={theme.toggleTheme} value={theme.isLightTheme} />
-    </View>
+    <TouchableOpacity
+      onPress={onPress}
+      activeOpacity={1}
+      style={styles.container}>
+      <Animatable.View
+        ref={viewRef}
+        duration={500}
+        style={{justifyContent: "center", alignItems: "center"}}>
+        <View style={styles.btn} />
+      </Animatable.View>
+      <Icon
+        type={item.type}
+        name={item.icon}
+        color={focused ? "#246afd" : "#000"}
+      />
+    </TouchableOpacity>
   );
 };
 
-const styles = (theme) =>
-  StyleSheet.create({
-    body: {
-      flex: 1,
-      backgroundColor: theme.colors.BACKGROUND,
-      justifyContent: "space-evenly",
-      alignItems: "center",
-      padding: 20,
-    },
-    title: {
-      color: theme.colors.PRIMARY,
-      fontSize: theme.typography.size.L,
-      letterSpacing: theme.typography.letterSpacing.M,
-      fontWeight: "bold",
-    },
-    text: {
-      color: theme.colors.TEXT,
-      fontSize: theme.typography.size.M,
-      letterSpacing: theme.typography.letterSpacing.S,
-      textAlign: "justify",
-    },
-    referralCode: {
-      color: theme.colors.TEXT_SECONDARY,
-      fontSize: theme.typography.size.S,
-      letterSpacing: theme.typography.letterSpacing.L,
-      fontWeight: "bold",
-    },
-  });
+const CommonFun = () => {
+  return null;
+};
 
-export default Main;
+const TabCommonBtn = ({item}) => {
+  return (
+    <TouchableOpacity
+      onPress={() => console.log("hello")}
+      activeOpacity={1}
+      style={styles.container}>
+      <Icon type={item.type} name={item.icon} color="#000" />
+    </TouchableOpacity>
+  );
+};
+
+export default function AnimTab1() {
+  return (
+    <Tab.Navigator
+      screenOptions={{
+        headerShown: false,
+        tabBarStyle: styles.tabBar,
+      }}
+      initialRouteName="Home">
+      <Tab.Screen
+        name="Pluscircle"
+        component={CommonFun}
+        options={{
+          tabBarShowLabel: false,
+          tabBarButton: (props) => (
+            <TabCommonBtn
+              {...props}
+              item={{
+                type: Icons.AntDesign,
+                icon: "pluscircle",
+              }}
+            />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Home"
+        component={Home}
+        options={{
+          tabBarShowLabel: false,
+          tabBarButton: (props) => (
+            <TabButton
+              {...props}
+              item={{
+                type: Icons.Entypo,
+                icon: "home",
+              }}
+            />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Message"
+        component={CommonFun}
+        options={{
+          tabBarShowLabel: false,
+          tabBarButton: (props) => (
+            <TabCommonBtn
+              {...props}
+              item={{
+                type: Icons.Entypo,
+                icon: "message",
+              }}
+            />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Menu"
+        component={CommonFun}
+        options={{
+          tabBarShowLabel: false,
+          tabBarButton: (props) => (
+            <TabCommonBtn
+              {...props}
+              item={{
+                type: Icons.Ionicons,
+                icon: "ios-menu",
+              }}
+            />
+          ),
+        }}
+      />
+    </Tab.Navigator>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  tabBar: {
+    height: 80,
+    borderTopRightRadius: 20,
+    borderTopLeftRadius: 20,
+    position: "absolute",
+  },
+  btn: {
+    width: 50,
+    height: 50,
+    borderRadius: 12,
+    transform: [{rotate: "45deg"}],
+    backgroundColor: "#246afd",
+    justifyContent: "center",
+    alignItems: "center",
+    position: "absolute",
+    bottom: -114,
+  },
+  circle: {
+    ...StyleSheet.absoluteFillObject,
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "#246afd",
+    borderRadius: 25,
+  },
+  text: {
+    fontSize: 10,
+    textAlign: "center",
+    color: "#246afd",
+  },
+});

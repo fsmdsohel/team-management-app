@@ -24,7 +24,8 @@ const Splash = ({navigation}) => {
       // } else {
       //   navigation.replace("Login");
       // }
-      navigation.replace("GetStarted");
+      navigation.replace("Main");
+      // navigation.replace("GetStarted");
     }, 300);
   };
 

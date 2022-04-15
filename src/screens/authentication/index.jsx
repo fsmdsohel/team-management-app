@@ -6,7 +6,7 @@ import {useNavigation} from "@react-navigation/native";
 import useThemedStyles from "theme/useThemedStyles";
 import Auth from "./auth";
 import Login from "./login";
-import {SignIn} from "./signUp";
+import {ProfileSetup, SignIn} from "./signUp";
 
 const LoginStack = createStackNavigator();
 
@@ -31,6 +31,7 @@ const Authentication = () => {
           <LoginStack.Screen name="loginEmail" component={Login.Email} />
           <LoginStack.Screen name="loginPassword" component={Login.Password} />
           <LoginStack.Screen name="signIn" component={SignIn} />
+          <LoginStack.Screen name="profileSetup" component={ProfileSetup} />
         </LoginStack.Navigator>
       </View>
     </AuthenticationContextProvider>
