@@ -48,7 +48,7 @@ const TabButton = ({item, onPress, accessibilityState}) => {
   );
 };
 
-const CommonFun = () => {
+const CommonComponent = () => {
   return null;
 };
 
@@ -73,7 +73,7 @@ export default function AnimTab1() {
       initialRouteName="Home">
       <Tab.Screen
         name="Pluscircle"
-        component={CommonFun}
+        component={CommonComponent}
         options={{
           tabBarShowLabel: false,
           tabBarButton: (props) => (
@@ -105,7 +105,7 @@ export default function AnimTab1() {
       />
       <Tab.Screen
         name="Message"
-        component={CommonFun}
+        component={CommonComponent}
         options={{
           tabBarShowLabel: false,
           tabBarButton: (props) => (
@@ -121,7 +121,7 @@ export default function AnimTab1() {
       />
       <Tab.Screen
         name="Menu"
-        component={CommonFun}
+        component={CommonComponent}
         options={{
           tabBarShowLabel: false,
           tabBarButton: (props) => (
