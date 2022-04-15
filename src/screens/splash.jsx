@@ -1,6 +1,6 @@
 import React, {useEffect} from "react";
 import LottieView from "lottie-react-native";
-import {View, StyleSheet, Text, Dimensions} from "react-native";
+import {View, StyleSheet, Text, Dimensions, StatusBar} from "react-native";
 
 import lottie from "../assets/login-spinner/lf30_editor_rvoddd2d.json";
 import {SafeAreaView} from "react-native-safe-area-context";
@@ -18,6 +18,9 @@ const Splash = ({navigation}) => {
   }, []);
 
   const myfunction = () => {
+    StatusBar.setBarStyle("light-content");
+    StatusBar.setBackgroundColor("#246afd");
+
     setTimeout(() => {
       // if (session?.signInUserSession) {
       //   navigation.replace("ServiceList");

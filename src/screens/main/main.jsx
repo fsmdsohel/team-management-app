@@ -5,6 +5,7 @@ import Icon, {Icons} from "components/Icons";
 import * as Animatable from "react-native-animatable";
 import {Home} from "./index";
 import {useNavigation} from "@react-navigation/native";
+import useNavigationContext from "./hook/useNavigationContext";
 
 const Tab = createBottomTabNavigator();
 
@@ -80,11 +81,16 @@ const TabCommonBtn = ({item}) => {
 };
 
 export default function AnimTab1() {
+  const {tabBarVisibility} = useNavigationContext();
+
   return (
     <Tab.Navigator
       screenOptions={{
         headerShown: false,
-        tabBarStyle: styles.tabBar,
+        tabBarStyle: [
+          styles.tabBar,
+          {display: tabBarVisibility ? "flex" : "none"},
+        ],
       }}
       initialRouteName="Home">
       <Tab.Screen
