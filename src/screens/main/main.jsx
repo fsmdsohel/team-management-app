@@ -1,11 +1,15 @@
 import {createBottomTabNavigator} from "@react-navigation/bottom-tabs";
-import React, {useEffect, useRef} from "react";
-import {StyleSheet, TouchableOpacity, View} from "react-native";
+import React, {useEffect, useRef, useState} from "react";
+import {StyleSheet, Text, TouchableOpacity, View} from "react-native";
 import Icon, {Icons} from "components/Icons";
 import * as Animatable from "react-native-animatable";
 import {Home} from "./index";
 import {useNavigation} from "@react-navigation/native";
 import useNavigationContext from "./hook/useNavigationContext";
+import VectorIcon from "react-native-vector-icons/MaterialCommunityIcons";
+import OctionsIcon from "react-native-vector-icons/Octicons";
+import FontAwesomeIcon from "react-native-vector-icons/FontAwesome5";
+import {Modal} from "components";
 
 const Tab = createBottomTabNavigator();
 
@@ -54,14 +58,14 @@ const CommonComponent = () => {
   return null;
 };
 
-const TabCommonBtn = ({item}) => {
+const TabCommonBtn = ({item, setModalVisible}) => {
   const navigation = useNavigation();
   return (
     <TouchableOpacity
       onPress={() => {
         switch (item.icon) {
           case "pluscircle":
-            console.log("plus btn");
+            setModalVisible(true);
             break;
           case "message":
             navigation.navigate("ChatLists");
@@ -80,84 +84,119 @@ const TabCommonBtn = ({item}) => {
   );
 };
 
+const ModalLabel = ({icon, onPress, label}) => (
+  <>
+    <TouchableOpacity
+      style={styles.modalItem}
+      activeOpacity={0.6}
+      onPress={onPress}>
+      <View style={styles.modalBtn}>{icon}</View>
+      <Text style={styles.modalLabel}>{label}</Text>
+    </TouchableOpacity>
+    <View style={styles.divider} />
+  </>
+);
+
 export default function AnimTab1() {
   const {tabBarVisibility} = useNavigationContext();
+  const [modalVisible, setModalVisible] = useState(false);
 
   return (
-    <Tab.Navigator
-      screenOptions={{
-        headerShown: false,
-        tabBarStyle: [
-          styles.tabBar,
-          {display: tabBarVisibility ? "flex" : "none"},
-        ],
-      }}
-      initialRouteName="Home">
-      <Tab.Screen
-        name="Pluscircle"
-        component={CommonComponent}
-        options={{
-          tabBarShowLabel: false,
-          tabBarButton: (props) => (
-            <TabCommonBtn
-              {...props}
-              item={{
-                type: Icons.AntDesign,
-                icon: "pluscircle",
-              }}
-            />
-          ),
+    <>
+      <Tab.Navigator
+        screenOptions={{
+          headerShown: false,
+          tabBarStyle: [
+            styles.tabBar,
+            {display: tabBarVisibility ? "flex" : "none"},
+          ],
+          tabBarHideOnKeyboard: true,
         }}
-      />
-      <Tab.Screen
-        name="Home"
-        component={Home}
-        options={{
-          tabBarShowLabel: false,
-          tabBarButton: (props) => (
-            <TabButton
-              {...props}
-              item={{
-                type: Icons.Entypo,
-                icon: "home",
-              }}
-            />
-          ),
-        }}
-      />
-      <Tab.Screen
-        name="Message"
-        component={CommonComponent}
-        options={{
-          tabBarShowLabel: false,
-          tabBarButton: (props) => (
-            <TabCommonBtn
-              {...props}
-              item={{
-                type: Icons.Entypo,
-                icon: "message",
-              }}
-            />
-          ),
-        }}
-      />
-      <Tab.Screen
-        name="Menu"
-        component={CommonComponent}
-        options={{
-          tabBarShowLabel: false,
-          tabBarButton: (props) => (
-            <TabCommonBtn
-              {...props}
-              item={{
-                type: Icons.Ionicons,
-                icon: "ios-menu",
-              }}
-            />
-          ),
-        }}
-      />
-    </Tab.Navigator>
+        initialRouteName="Home">
+        <Tab.Screen
+          name="Pluscircle"
+          component={CommonComponent}
+          options={{
+            tabBarShowLabel: false,
+            tabBarButton: (props) => (
+              <TabCommonBtn
+                {...props}
+                setModalVisible={setModalVisible}
+                item={{
+                  type: Icons.AntDesign,
+                  icon: "pluscircle",
+                }}
+              />
+            ),
+          }}
+        />
+        <Tab.Screen
+          name="Home"
+          component={Home}
+          options={{
+            tabBarShowLabel: false,
+            tabBarButton: (props) => (
+              <TabButton
+                {...props}
+                item={{
+                  type: Icons.Entypo,
+                  icon: "home",
+                }}
+              />
+            ),
+          }}
+        />
+        <Tab.Screen
+          name="Message"
+          component={CommonComponent}
+          options={{
+            tabBarShowLabel: false,
+            tabBarButton: (props) => (
+              <TabCommonBtn
+                {...props}
+                item={{
+                  type: Icons.Entypo,
+                  icon: "message",
+                }}
+              />
+            ),
+          }}
+        />
+        <Tab.Screen
+          name="Menu"
+          component={CommonComponent}
+          options={{
+            tabBarShowLabel: false,
+            tabBarButton: (props) => (
+              <TabCommonBtn
+                {...props}
+                item={{
+                  type: Icons.Ionicons,
+                  icon: "ios-menu",
+                }}
+              />
+            ),
+          }}
+        />
+      </Tab.Navigator>
+      <Modal modalVisible={modalVisible} setModalVisible={setModalVisible}>
+        <ModalLabel
+          label="Create Task"
+          onPress={() => console.log("first")}
+          icon={<VectorIcon name="plus" size={18} color="#fff" />}
+        />
+        <ModalLabel
+          label="Create Project"
+          onPress={() => console.log("second")}
+          icon={<OctionsIcon name="project" size={10} color="#fff" />}
+        />
+        <ModalLabel
+          label="Create Team"
+          onPress={() => console.log("third")}
+          icon={<FontAwesomeIcon name="users" size={10} color="#fff" />}
+        />
+      </Modal>
+    </>
   );
 }
 
@@ -195,5 +234,28 @@ const styles = StyleSheet.create({
     fontSize: 10,
     textAlign: "center",
     color: "#246afd",
+  },
+  modalItem: {
+    flexDirection: "row",
+    alignItems: "center",
+    paddingVertical: 14,
+  },
+  modalBtn: {
+    width: 30,
+    height: 30,
+    borderRadius: 100,
+    marginRight: 20,
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "#246afd",
+  },
+  modalLabel: {
+    fontFamily: "Lato-Bold",
+    fontSize: 18,
+    color: "#444",
+  },
+  divider: {
+    borderWidth: 0.6,
+    borderColor: "#ddd",
   },
 });

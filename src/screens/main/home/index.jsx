@@ -1,21 +1,21 @@
-import {useRoute} from "@react-navigation/native";
-import React, {useEffect} from "react";
+import React from "react";
 import {StyleSheet, Text, View, Button} from "react-native";
-import {createStackNavigator} from "@react-navigation/stack";
 import {useNavigation} from "@react-navigation/native";
-import useNavigationContext from "../hook/useNavigationContext";
+import {createNativeStackNavigator} from "@react-navigation/native-stack";
+import {Modal} from "components";
 
-const Stack = createStackNavigator();
+const Stack = createNativeStackNavigator();
 
 const Home = () => {
   const navigation = useNavigation();
   return (
     <View>
-      <Text>hello from home</Text>
+      <Text>hello from notification</Text>
       <Button
         onPress={() => navigation.navigate("nestedNotifications")}
         title="Notification"
       />
+      <Modal />
     </View>
   );
 };
@@ -32,7 +32,7 @@ const Notifications = () => {
 
 const HomeRouter = () => {
   return (
-    <Stack.Navigator>
+    <Stack.Navigator screenOptions={{animation: "fade", headerShown: false}}>
       <Stack.Screen name="nestedHome" component={Home} />
       <Stack.Screen name="nestedNotifications" component={Notifications} />
     </Stack.Navigator>
