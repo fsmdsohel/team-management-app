@@ -48,6 +48,7 @@ const Mome = () => {
             },
           ]}></View>
         <TouchableOpacity
+          activeOpacity={0.8}
           style={[
             styles.task,
             {
@@ -65,7 +66,59 @@ const Mome = () => {
               <Text style={styles.taskBtnLabel}>Details</Text>
             </View>
           </View>
-          <View></View>
+          <View
+            style={{
+              height: "100%",
+              width: 46,
+              position: "relative",
+            }}>
+            <View
+              style={[
+                styles.taskUsers,
+                {
+                  backgroundColor: "#8bb0fe",
+                  transform: [{rotate: "-5deg"}],
+                },
+              ]}
+            />
+            <View
+              style={[
+                styles.taskUsers,
+                {
+                  backgroundColor: "#fff",
+                  alignItems: "center",
+                  justifyContent: "center",
+                },
+              ]}>
+              <Image
+                style={styles.taskUserImage}
+                source={require("assets/users/user1.png")}
+              />
+              <Image
+                style={[styles.taskUserImage, {margin: -10}]}
+                source={require("assets/users/user2.png")}
+              />
+              <Image
+                style={styles.taskUserImage}
+                source={require("assets/users/user3.png")}
+              />
+              <Image
+                style={[styles.taskUserImage, {margin: -10}]}
+                source={require("assets/users/user4.png")}
+              />
+              <View
+                style={{
+                  width: 26,
+                  height: 26,
+                  borderRadius: 100,
+                  backgroundColor: "#246afd",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}>
+                <VectorIcon name="plus" size={14} color="#fff" />
+              </View>
+            </View>
+          </View>
         </TouchableOpacity>
       </View>
     </SafeAreaView>
@@ -149,6 +202,8 @@ const styles = StyleSheet.create({
     top: 0,
     bottom: 0,
     borderRadius: 30,
+    justifyContent: "space-between",
+    flexDirection: "row",
   },
   taskContainer: {
     position: "relative",
@@ -192,5 +247,18 @@ const styles = StyleSheet.create({
   taskBtnLabel: {
     color: "#fff",
     fontFamily: "Lato-Regular",
+  },
+  taskUsers: {
+    position: "absolute",
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    borderRadius: 18,
+  },
+  taskUserImage: {
+    width: 26,
+    height: 26,
+    borderRadius: 100,
   },
 });
