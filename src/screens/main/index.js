@@ -1,3 +1,6 @@
 import Main from "./main";
 import Home from "./home";
-export {Main, Home};
+import ChatListsRouter from "./chatLists";
+import SettingRouter from "./settings";
+
+export {Main, Home, ChatListsRouter, SettingRouter};

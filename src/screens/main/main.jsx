@@ -4,6 +4,7 @@ import {StyleSheet, TouchableOpacity, View} from "react-native";
 import Icon, {Icons} from "components/Icons";
 import * as Animatable from "react-native-animatable";
 import {Home} from "./index";
+import {useNavigation} from "@react-navigation/native";
 
 const Tab = createBottomTabNavigator();
 
@@ -53,9 +54,24 @@ const CommonComponent = () => {
 };
 
 const TabCommonBtn = ({item}) => {
+  const navigation = useNavigation();
   return (
     <TouchableOpacity
-      onPress={() => console.log("hello")}
+      onPress={() => {
+        switch (item.icon) {
+          case "pluscircle":
+            console.log("plus btn");
+            break;
+          case "message":
+            navigation.navigate("ChatLists");
+            break;
+          case "ios-menu":
+            navigation.navigate("Settings");
+            break;
+          default:
+            break;
+        }
+      }}
       activeOpacity={1}
       style={styles.container}>
       <Icon type={item.type} name={item.icon} color="#000" />
